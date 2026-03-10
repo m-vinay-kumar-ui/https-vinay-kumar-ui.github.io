@@ -1,207 +1,733 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>madamshetty vinay kumar — Product Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-<title>Vinay | UI/UX & Product Designer</title>
+/* ── DARK THEME ── */
+:root{
+  --sand:    #080f14;
+  --sand2:   #0a1520;
+  --paper:   #0d1c28;
+  --clay:    #22d3ee;
+  --terra:   #06b6d4;
+  --rust:    #67e8f9;
+  --moss:    #2dd4bf;
+  --sage:    #5eead4;
+  --ochre:   #38bdf8;
+  --ink:     #e8f4f8;
+  --ink2:    #d0eaf4;
+  --muted:   #6ba3b8;
+  --border:  rgba(34,211,238,0.12);
+  --serif:   'Plus Jakarta Sans',sans-serif;
+  --slab:    'Plus Jakarta Sans',sans-serif;
+  --body:    'DM Sans',sans-serif;
+  --nav-bg:  rgba(8,15,20,.95);
+}
 
-<link rel="stylesheet" href="style.css">
+html{scroll-behavior:smooth}
+body{
+  background:var(--sand);
+  color:var(--ink);
+  font-family:var(--body);
+  overflow-x:hidden;
+  cursor:none;
+  transition:background .4s ease, color .4s ease;
+}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.028;pointer-events:none;z-index:9990;}
 
+#cur{position:fixed;width:12px;height:12px;background:var(--clay);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,border-radius .25s;mix-blend-mode:screen;}
+#cur.big{width:52px;height:52px;background:var(--ochre);border-radius:50%}
+#cring{position:fixed;width:38px;height:38px;border:1.5px solid rgba(34,211,238,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s ease-out,top .1s ease-out;}
+#bgc{position:fixed;inset:0;z-index:0;opacity:.35}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:18px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--nav-bg);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nlogo{font-family:var(--serif);font-size:22px;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.03em;}
+.nlogo span{color:var(--clay)}
+.nlinks{display:flex;gap:30px;list-style:none}
+.nlinks a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;}
+.nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--clay);transition:width .3s;}
+.nlinks a:hover,.nlinks a.active{color:var(--ink)}
+.nlinks a:hover::after,.nlinks a.active::after{width:100%}
+.nbtn{padding:10px 22px;background:var(--clay);color:var(--sand);font-family:var(--body);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:background .3s,transform .2s;cursor:none;}
+.nbtn:hover{background:var(--rust);transform:translateY(-2px)}
+
+section{position:relative;z-index:2;padding:120px 64px 100px;}
+#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:150px}
+.home-wrap{display:grid;grid-template-columns:1fr 300px;gap:70px;align-items:center}
+.htag{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border:1.5px solid rgba(34,211,238,.3);background:rgba(34,211,238,.06);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:26px;animation:fadeUp .8s ease both;}
+.hdot{width:6px;height:6px;border-radius:50%;background:var(--clay);animation:bl 1.8s ease-in-out infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2;transform:scale(.7)}}
+.htitle{font-family:var(--serif);font-size:clamp(48px,6.5vw,88px);font-weight:800;line-height:.9;letter-spacing:-.04em;animation:fadeUp .9s .1s ease both;color:var(--ink);}
+.htitle .grad{background:linear-gradient(135deg,var(--clay) 0%,var(--ochre) 55%,var(--moss) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200%;animation:gs 5s ease infinite;}
+@keyframes gs{0%,100%{background-position:0%}50%{background-position:100%}}
+.htype{margin-top:16px;font-family:var(--body);font-size:clamp(15px,2vw,20px);font-weight:400;color:var(--muted);animation:fadeUp 1s .3s ease both;}
+#typed{color:var(--clay);font-weight:500}
+.cblink{display:inline-block;width:2px;height:.9em;background:var(--clay);margin-left:3px;vertical-align:middle;animation:cb .75s step-end infinite}
+@keyframes cb{0%,100%{opacity:1}50%{opacity:0}}
+.hdesc{margin-top:20px;font-size:14px;line-height:1.9;color:var(--muted);max-width:480px;animation:fadeUp 1s .4s ease both;font-weight:300;}
+.hbtns{display:flex;gap:12px;margin-top:36px;animation:fadeUp 1s .5s ease both}
+.mbtn{position:relative;padding:13px 28px;font-family:var(--body);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-decoration:none;cursor:none;overflow:hidden;transition:transform .3s;}
+.mbtn:hover{transform:translateY(-3px)}
+.mbtn.pri{background:var(--clay);color:var(--sand)}
+.mbtn.pri::before{content:'';position:absolute;inset:0;background:var(--rust);opacity:0;transition:opacity .4s}
+.mbtn.pri:hover::before{opacity:1}
+.mbtn span{position:relative;z-index:1}
+.mbtn.out{border:1.5px solid rgba(200,220,230,.2);color:var(--muted)}
+.mbtn.out:hover{border-color:var(--clay);color:var(--clay)}
+.profile-card{background:var(--paper);border:1.5px solid rgba(34,211,238,.2);position:relative;overflow:hidden;animation:fadeIn 1.2s .4s ease both;}
+.profile-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,112,58,.04),rgba(90,107,63,.04));pointer-events:none;z-index:1;}
+.profile-glow{position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(34,211,238,.2) 0%,transparent 70%);animation:fg 4s ease-in-out infinite;z-index:0;}
+@keyframes fg{0%,100%{transform:translate(0,0)}50%{transform:translate(-15px,15px)}}
+.profile-img-wrap{position:relative;z-index:2;width:100%;aspect-ratio:3/4;overflow:hidden}
+.profile-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s}
+.profile-card:hover .profile-img-wrap img{transform:scale(1.03)}
+.profile-info{position:relative;z-index:2;padding:18px 20px;border-top:1px solid var(--border)}
+.profile-name{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:3px}
+.profile-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.profile-badges{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.pbadge{font-size:10px;letter-spacing:.08em;padding:4px 10px}
+.pbadge.cl{background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);color:var(--clay)}
+.pbadge.ms{background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.28);color:var(--moss)}
+.pbadge.oc{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.28);color:var(--ochre)}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;animation:fadeIn 1s 1.4s both;z-index:3;}
+.sh-txt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh-line{width:1px;height:44px;background:linear-gradient(var(--clay),transparent);animation:sl 2s ease-in-out infinite}
+@keyframes sl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.sh{margin-bottom:56px}
+.seye{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.seye::before{content:'';display:block;width:28px;height:1.5px;background:var(--clay)}
+.stitle{font-family:var(--serif);font-size:clamp(34px,4.5vw,58px);font-weight:800;line-height:.98;letter-spacing:-.04em;}
+.stitle .grad{background:linear-gradient(135deg,var(--clay),var(--ochre));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stitle em{font-style:italic}
+.ssub{font-size:14px;color:var(--muted);line-height:1.8;max-width:480px;margin-top:12px;font-weight:300}
+#projects{background:var(--sand2)}
+
+/* ── GRID FIX: always 3 columns, cards stay inside ── */
+.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+.cover-card{background:var(--paper);border:1.5px solid var(--border);overflow:hidden;position:relative;cursor:none;display:flex;flex-direction:column;transition:border-color .4s,transform .35s,box-shadow .35s;}
+.cover-card:hover{border-color:rgba(34,211,238,.4);transform:translateY(-6px);box-shadow:0 20px 56px rgba(34,211,238,.08);}
+.cover-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,var(--clay),var(--ochre),var(--moss));transform:scaleX(0);transform-origin:left;transition:transform .5s ease;z-index:10;}
+.cover-card:hover::before{transform:scaleX(1)}
+.cc-cover{width:100%;height:210px;position:relative;overflow:hidden;flex-shrink:0}
+.cc-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.cover-card:hover .cc-cover img{transform:scale(1.04)}
+.cc-bg{width:100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px}
+.cc-bg1{
+  height:100%;width:100%;
+  background-image:url("https://mir-s3-cdn-cf.behance.net/projects/max_808/54fb69245384057.Y3JvcCwxMjI4LDk2MCwwLDIxOTU.jpg");
+  background-size:cover;background-position:center;
+}
+.cc-bg-bigbasket{
+  background-image:url("https://image2url.com/r2/default/images/1773168261341-96281302-c589-44f2-9289-dcbaa8bcb0a0.png");
+  background-size:cover;background-position:center;
+}
+.cc-bg2{background:linear-gradient(155deg,#051820 0%,#082535 55%,#041015 100%)}
+.cc-bg3{background:linear-gradient(155deg,#071a20 0%,#0a2830 55%,#051218 100%)}
+.cc-bg4{background:linear-gradient(155deg,#051520 0%,#082030 55%,#041018 100%)}
+.cc-blob{position:absolute;border-radius:50%;filter:blur(52px);animation:fb 8s ease-in-out infinite}
+.ccb1{width:160px;height:160px;top:-20px;right:-20px}
+.ccb2{width:110px;height:110px;bottom:-10px;left:10px;animation-delay:-4s}
+@keyframes fb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(12px,-14px) scale(1.06)}}
+.cc-num-bg{position:absolute;top:8px;left:14px;font-family:var(--serif);font-size:72px;font-weight:900;font-style:italic;color:rgba(245,239,228,.06);line-height:1;pointer-events:none;}
+.cc-label-row{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;width:100%}
+.cc-cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(245,239,228,.18);background:rgba(0,0,0,.4);backdrop-filter:blur(8px);color:rgba(245,239,228,.7);}
+.cc-year-badge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,239,228,.38)}
+.cc-dots{position:absolute;top:14px;right:14px;display:flex;gap:5px}
+.cc-dots span{width:7px;height:7px;border-radius:50%;background:rgba(245,239,228,.14)}
+.cc-dots span:first-child{background:rgba(196,112,58,.7)}
+.cc-body{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column}
+.cc-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-bottom:9px}
+.cc-title{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1.25;margin-bottom:10px;}
+.cc-desc{font-size:12px;color:var(--muted);line-height:1.8;font-weight:300;flex:1;margin-bottom:18px}
+.cc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.cc-pill{display:inline-block;padding:0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;background:none;border:none;}
+.cc-pill.cl{color:var(--clay)}
+.cc-pill.ms{color:var(--moss)}
+.cc-pill.oc{color:var(--ochre)}
+.cc-arrow{width:30px;height:30px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:background .3s,color .3s,border-color .3s;}
+.cover-card:hover .cc-arrow{background:var(--clay);color:var(--sand);border-color:var(--clay)}
+#case-studies{background:var(--sand)}
+#about{background:var(--sand2)}
+.agrid{display:grid;grid-template-columns:1fr 300px;gap:70px;align-items:start}
+.about-intro{font-family:var(--serif);font-size:clamp(16px,1.8vw,20px);font-weight:400;line-height:1.8;margin-top:24px;margin-bottom:22px;}
+.about-intro em{font-style:normal;color:var(--clay);font-weight:600}
+.about-p{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:20px;font-weight:300}
+.about-section-title{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--border);margin-top:36px;}
+.chip-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.achip{font-size:11px;letter-spacing:.07em;padding:7px 14px;border:1.5px solid var(--border);color:var(--muted);transition:border-color .3s,color .3s,background .3s;cursor:none;}
+.achip:hover{border-color:var(--clay);color:var(--clay);background:rgba(34,211,238,.06)}
+.achip.hi{border-color:rgba(34,211,238,.35);color:var(--clay);background:rgba(34,211,238,.07)}
+.acard{background:var(--paper);border:1.5px solid rgba(34,211,238,.15);overflow:hidden;position:relative;}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,var(--clay),var(--ochre),var(--moss));z-index:2;}
+.acard-img{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
+.acard-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s}
+.acard:hover .acard-img img{transform:scale(1.03)}
+.acard-bottom{padding:18px 20px;border-top:1px solid var(--border)}
+.acard-name{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:3px}
+.acard-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.acard-tag-wrap{display:flex;gap:6px;flex-wrap:wrap}
+.act{font-size:10px;letter-spacing:.08em;padding:4px 10px}
+.act.cl{background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);color:var(--clay)}
+.act.ms{background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.28);color:var(--moss)}
+.act.oc{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.28);color:var(--ochre)}
+#resume{background:var(--sand)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.rct{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:28px;padding-bottom:12px;border-bottom:1.5px solid var(--border);}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:1.5px;background:linear-gradient(var(--clay),rgba(34,211,238,.05));}
+.tli{margin-bottom:28px;position:relative}
+.tli::before{content:'';position:absolute;left:-24px;top:6px;width:9px;height:9px;background:var(--sand);border:2px solid var(--clay);border-radius:50%;transition:background .3s;}
+.tli:hover::before{background:var(--clay)}
+.tyr{font-size:10px;letter-spacing:.1em;color:var(--clay);text-transform:uppercase;margin-bottom:5px}
+.tttl{font-size:14px;font-weight:600;margin-bottom:2px;font-family:var(--slab)}
+.tpl{font-size:11px;color:var(--muted);margin-bottom:7px}
+.tb{font-size:12px;color:var(--muted);line-height:1.75;font-weight:300}
+.twrap{margin-top:36px}
+.ttit{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:16px;padding-bottom:11px;border-bottom:1.5px solid var(--border);}
+.tchips{display:flex;flex-wrap:wrap;gap:7px}
+.tch{padding:8px 14px;font-size:11px;letter-spacing:.07em;border:1.5px solid var(--border);color:var(--muted);transition:border-color .3s,color .3s,background .3s;cursor:none;}
+.tch:hover{border-color:var(--clay);color:var(--clay);background:rgba(34,211,238,.06)}
+.rdl{margin-top:36px;display:flex;gap:12px}
+#contact{background:var(--sand2)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.cbig{font-family:var(--serif);font-size:clamp(34px,4.5vw,58px);font-weight:800;line-height:1;letter-spacing:-.04em;margin-top:26px;margin-bottom:20px;}
+.cbig .grad{background:linear-gradient(135deg,var(--clay),var(--ochre),var(--moss));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200%;animation:gs 5s ease infinite;}
+.csub{font-size:14px;color:var(--muted);line-height:1.85;max-width:360px;margin-bottom:38px;font-weight:300}
+.clink{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--ink);transition:padding-left .3s,color .3s;}
+.clink:hover{padding-left:8px;color:var(--clay)}
+.clink:hover .clarr{color:var(--clay)}
+.cll{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.clv{font-size:14px;font-weight:500}
+.clarr{color:var(--muted);font-size:18px;transition:color .3s}
+.fg{margin-bottom:17px}
+.fl{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.fi,.fta{width:100%;background:var(--paper);border:1.5px solid var(--border);color:var(--ink);font-family:var(--body);font-size:13px;padding:12px 15px;outline:none;transition:border-color .3s,box-shadow .3s;}
+.fi:focus,.fta:focus{border-color:var(--clay);box-shadow:0 0 0 3px rgba(34,211,238,.1)}
+.fi::placeholder,.fta::placeholder{color:var(--muted);opacity:.6}
+.fta{min-height:105px;resize:none}
+.fsub{width:100%;padding:14px;background:var(--clay);color:var(--sand);border:none;font-family:var(--body);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:none;transition:background .3s,transform .2s;position:relative;overflow:hidden;}
+.fsub::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.15);border-radius:50%;transform:translate(-50%,-50%);transition:width .5s,height .5s;}
+.fsub:hover::before{width:280px;height:280px}
+.fsub:hover{background:var(--rust);transform:translateY(-2px)}
+footer{position:relative;z-index:2;padding:26px 64px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);letter-spacing:.06em;background:var(--sand);}
+footer a{color:var(--muted);text-decoration:none;transition:color .3s}
+footer a:hover{color:var(--clay)}
+.flogo{font-family:var(--serif);font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--clay),var(--ochre));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.divider{position:relative;z-index:2;height:2px;background:linear-gradient(90deg,transparent,var(--clay),var(--ochre),var(--moss),transparent);opacity:.25;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@media(max-width:900px){
+  nav{padding:16px 20px}
+  .nlinks{display:none}
+  section{padding:100px 20px 60px}
+  .home-wrap,.agrid,.cgrid,.rgrid{grid-template-columns:1fr}
+  .profile-card{display:none}
+  .cover-grid{grid-template-columns:1fr}
+  footer{padding:20px}
+}
+</style>
 </head>
 <body>
+<canvas id="bgc"></canvas>
+<div id="cur"></div>
+<div id="cring"></div>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-<h2 class="logo">VINAY KUMAR</h2>
-
-<ul class="nav-links">
-  
-<li><a href="#home" >Home</a></li>
-<li><a href="#work" >Work</a></li>
-<li><a href="#case">Case Studies</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#resume">Resume</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
+<nav>
+  <a href="#home" class="nlogo">Vinay<span>.</span></a>
+  <ul class="nlinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Résumé</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#contact" class="nbtn">Hire Me →</a>
+  </div>
 </nav>
 
+<!-- ══════════════ HOME ══════════════ -->
+<section id="home">
+  <div class="home-wrap">
+    <div>
+      <div class="htag"><span class="hdot"></span>Open to Opportunities · 2025</div>
+      <h1 class="htitle">
+        Product<br>
+        <span class="grad">Designer</span><br>
+        <span style="font-size:.52em;font-weight:300;color:var(--muted);letter-spacing:-.02em">&amp; UX Enthusiast</span>
+      </h1>
+      <div class="htype">I craft&nbsp;<span id="typed"></span><span class="cblink"></span></div>
+      <p class="hdesc">Passionate about designing digital products that solve real problems — where empathy, curiosity, and craft come together to create experiences people love.</p>
+      <div class="hbtns">
+        <a href="#projects" class="mbtn pri"><span>View My Work</span></a>
+        <a href="#contact" class="mbtn out"><span>Get in Touch</span></a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-glow"></div>
+      <div class="profile-img-wrap">
+        <img src="https://image2url.com/r2/default/images/1771156956687-30701bb7-0ebc-43f4-8d3d-be31625a1de7.jpeg" alt="Vinay Kumar">
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">Madamshetty Vinay Kumar</div>
+        <div class="profile-role">Product Designer · Fresher</div>
+        <div class="profile-badges">
+          <span class="pbadge cl">Full-Time</span>
+          <span class="pbadge ms">Part-Time</span>
+          <span class="pbadge oc">Remote / WFH</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="sh-txt">Scroll</div><div class="sh-line"></div></div>
+</section>
 
+<div class="divider"></div>
 
-<!-- HOME -->
-
-<section id="home" class="section bg-home home">
-
-<div class="home-text">
-<h1 >Hello, I'm <span class="red">Vinay Kumar</span></h1>
-<h1><span class="orange"> Product Designer</span> & <span class="yellow">Frontend developer</span></h1>
-
-<p>I design modern digital products with clean experiences.</p>
-<div class="skills">
-<h2>Tools</h2>
-  •Figma 
-  •Photoshop 
-  •VS Code <br>
+<!-- ══════════════ PROJECTS ══════════════ -->
+<section id="projects">
+  <div class="sh">
+    <div class="seye">Selected Work</div>
+    <h2 class="stitle">Recent <span class="grad">Projects</span></h2>
+    <p class="ssub">UI/UX projects built during my design journey — from concept to polished prototype.</p>
   </div>
 
+  <!-- ✅ FIX: all 3 cards are inside .cover-grid -->
+  <div class="cover-grid">
 
-<button class="btn" id="viewWorkBtn">View My Work</button>
+    <!-- Card 1 -->
+    <div class="cover-card">
+      <div class="cc-cover">
+        <div class="cc-bg cc-bg1">
+          <div class="cc-num-bg">01</div>
+          <div class="cc-dots"><span></span><span></span><span></span></div>
+          <div class="cc-label-row">
+            <span class="cc-cat">Mobile App</span>
+            <span class="cc-year-badge">2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-tag">UI/UX Design · Figma</div>
+        <div class="cc-title">CareCircle — Family Care Management App</div>
+        <div class="cc-desc">Designed a family care management app to help users track medications, appointments, tasks, and health updates in one platform.</div>
+        <div class="cc-foot">
+          <span class="cc-pill cl">Mobile UX</span>
+          <div class="cc-arrow">↗</div>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <!-- Card 2 -->
+    <div class="cover-card" style="transition-delay:.1s">
+      <div class="cc-cover">
+        <div class="cc-bg cc-bg2">
+          <div class="cc-blob ccb1" style="background:rgba(13,148,136,.35)"></div>
+          <div class="cc-blob ccb2" style="background:rgba(8,145,178,.22)"></div>
+          <div class="cc-num-bg">02</div>
+          <div class="cc-dots"><span></span><span></span><span></span></div>
+          <div class="cc-label-row">
+            <span class="cc-cat">Coming Soon</span>
+            <span class="cc-year-badge">2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-tag">— · —</div>
+        <div class="cc-title" style="color:var(--muted);font-style:italic">Project Coming Soon</div>
+        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This project is currently in progress. Check back soon for updates.</div>
+        <div class="cc-foot">
+          <span class="cc-pill ms" style="opacity:.4">In Progress</span>
+          <div class="cc-arrow" style="opacity:.3">↗</div>
+        </div>
+      </div>
+    </div>
 
-<img src="https://image2url.com/r2/default/images/1771156956687-30701bb7-0ebc-43f4-8d3d-be31625a1de7.jpeg" class="profile-img">
+    <!-- Card 3 -->
+    <div class="cover-card" style="transition-delay:.2s">
+      <div class="cc-cover">
+        <div class="cc-bg cc-bg3">
+          <div class="cc-blob ccb1" style="background:rgba(6,182,212,.32)"></div>
+          <div class="cc-blob ccb2" style="background:rgba(13,148,136,.22)"></div>
+          <div class="cc-num-bg">03</div>
+          <div class="cc-dots"><span></span><span></span><span></span></div>
+          <div class="cc-label-row">
+            <span class="cc-cat">Coming Soon</span>
+            <span class="cc-year-badge">2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-tag">— · —</div>
+        <div class="cc-title" style="color:var(--muted);font-style:italic">Project Coming Soon</div>
+        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This project is currently in progress. Check back soon for updates.</div>
+        <div class="cc-foot">
+          <span class="cc-pill oc" style="opacity:.4">In Progress</span>
+          <div class="cc-arrow" style="opacity:.3">↗</div>
+        </div>
+      </div>
+    </div>
 
+  </div><!-- ✅ end .cover-grid -->
 </section>
 
-<!-- WORK -->
+<div class="divider"></div>
 
-<section id="work" class="section bg-work">
+<!-- ══════════════ CASE STUDIES ══════════════ -->
+<section id="case-studies">
+  <div class="sh">
+    <div class="seye">Deep Dives</div>
+    <h2 class="stitle">Case <em><span class="grad">Studies</span></em></h2>
+    <p class="ssub">Step-by-step breakdowns of my design thinking — from problem space through to final solution.</p>
+  </div>
 
-<h2>My Work</h2>
+  <!-- ✅ FIX: all 3 cards are inside .cover-grid -->
+  <div class="cover-grid">
 
-<div class="grid">
+    <!-- Card 1 -->
+    <div class="cover-card">
+      <div class="cc-cover">
+        <div class="cc-bg cc-bg-bigbasket">
+          <div class="cc-blob ccb1" style="background:rgba(8,145,178,.38)"></div>
+          <div class="cc-blob ccb2" style="background:rgba(6,182,212,.22)"></div>
+          <div class="cc-num-bg">01</div>
+          <div class="cc-label-row">
+            <span class="cc-cat">E-commerce · Redesign</span>
+            <span class="cc-year-badge">Case Study</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-tag">UX Research · UI Redesign · Figma</div>
+        <div class="cc-title">BigBasket UI/UX Redesign</div>
+        <div class="cc-desc">Redesigned the grocery shopping experience to improve product discovery and navigation clarity.</div>
+        <div class="cc-foot">
+          <span class="cc-pill ms">Improved Discovery</span>
+          <div class="cc-arrow">↗</div>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://image2url.com/r2/default/images/1772911136380-ba71f2aa-cee4-4faa-b957-8e7ad346c1d2.jpg">
-<div class="card-content">
-  <a href="https://www.behance.net/gallery/245384057/CareCircle-Family-Care-Management-Mobile-Application?platform=direct">
-<h3>Health care App UI</h3>
-<p>Mobile app design</p>
-</a>
-</div>
-</div>
+    <!-- Card 2 -->
+    <div class="cover-card" style="transition-delay:.1s">
+      <div class="cc-cover">
+        <div class="cc-bg cc-bg4">
+          <div class="cc-blob ccb1" style="background:rgba(13,148,136,.32)"></div>
+          <div class="cc-blob ccb2" style="background:rgba(6,182,212,.25)"></div>
+          <div class="cc-num-bg">02</div>
+          <div class="cc-label-row">
+            <span class="cc-cat">Coming Soon</span>
+            <span class="cc-year-badge">2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-tag">— · —</div>
+        <div class="cc-title" style="color:var(--muted);font-style:italic">Case Study Coming Soon</div>
+        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This case study is currently being documented. Check back soon for the full breakdown.</div>
+        <div class="cc-foot">
+          <span class="cc-pill oc" style="opacity:.4">In Progress</span>
+          <div class="cc-arrow" style="opacity:.3">↗</div>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="work2.jpg">
-<div class="card-content">
-<h3>Ecommerce Website</h3>
-<p>UX/UI design</p>
-</div>
-</div>
+    <!-- Card 3 -->
+    <div class="cover-card" style="transition-delay:.2s">
+      <div class="cc-cover">
+        <div class="cc-bg cc-bg3">
+          <div class="cc-blob ccb1" style="background:rgba(6,182,212,.32)"></div>
+          <div class="cc-blob ccb2" style="background:rgba(8,145,178,.22)"></div>
+          <div class="cc-num-bg">03</div>
+          <div class="cc-label-row">
+            <span class="cc-cat">Coming Soon</span>
+            <span class="cc-year-badge">2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-tag">— · —</div>
+        <div class="cc-title" style="color:var(--muted);font-style:italic">Case Study Coming Soon</div>
+        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This case study is currently being documented. Check back soon for the full breakdown.</div>
+        <div class="cc-foot">
+          <span class="cc-pill cl" style="opacity:.4">In Progress</span>
+          <div class="cc-arrow" style="opacity:.3">↗</div>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="work3.jpg">
-<div class="card-content">
-<h3>Dashboard</h3>
-<p>Product design</p>
-</div>
-</div>
-
-</div>
-
+  </div><!-- ✅ end .cover-grid -->
 </section>
 
-<!-- CASE -->
+<div class="divider"></div>
 
-<section id="case" class="section bg-case">
-
-<h2>Case Studies</h2>
-
-<div class="grid">
-
-<div class="card">
-  
-<img src="https://image2url.com/r2/default/images/1771181433582-f70e1ded-3060-4849-b479-de3c7699dc4c.jpg" >
-
-<div class="card-content">
-  <a href="https://www.behance.net/gallery/242673607/BigBasket-UIUX-Redesign-Case-Study?platform=direct">
-<h3>Big Basket Redeign</h3>
-<p>Full case study</p>
-</a>
-</div>
-</div>
-
-<div class="card">
-<img src="case2.jpg">
-<div class="card-content">
-<h3>Finance App</h3>
-<p>UX research & UI</p>
-</div>
-</div>
-
-<div class="card">
-<img src="case3.jpg">
-<div class="card-content">
-<h3>Finance App</h3>
-<p>UX research & UI</p>
-</div>
-</div>
-
-</div>
-
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="agrid">
+    <div>
+      <div class="seye">About Me</div>
+      <h2 class="stitle">Designing with <em><span class="grad">Curiosity</span></em></h2>
+      <div class="about-intro">Hi, I'm <em>Madamshetty Vinay Kumar</em> — a passionate product designer at the start of my journey.</div>
+      <p class="about-p">I recently completed my design education and I'm actively building my skills through self-initiated projects, design challenges, and continuous learning. I believe great design starts with empathy — deeply understanding people before picking up any tool.</p>
+      <p class="about-p">I'm looking for my first opportunity where I can contribute, learn fast, and grow alongside a team that cares about craft and impact.</p>
+      <div class="about-section-title">Skills &amp; Tools</div>
+      <div class="chip-wrap">
+        <span class="achip hi">Figma</span><span class="achip hi">UX Research</span>
+        <span class="achip hi">Wireframing</span><span class="achip hi">Prototyping</span>
+        <span class="achip">Design Systems</span><span class="achip">User Testing</span>
+        <span class="achip">Information Architecture</span><span class="achip">Adobe XD</span>
+        <span class="achip">HTML / CSS</span><span class="achip">Miro</span>
+        <span class="achip">Notion</span><span class="achip">Maze</span>
+      </div>
+    </div>
+    <div>
+      <div class="acard">
+        <div class="acard-img">
+          <img src="https://image2url.com/r2/default/images/1771156956687-30701bb7-0ebc-43f4-8d3d-be31625a1de7.jpeg" alt="Vinay Kumar" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
+        </div>
+        <div class="acard-bottom">
+          <div class="acard-name">Madamshetty Vinay Kumar</div>
+          <div class="acard-role">Product Designer · Fresher</div>
+          <div class="acard-tag-wrap">
+            <span class="act cl">Open to Work</span>
+            <span class="act ms">Full-Time</span>
+            <span class="act ms">Part-Time</span>
+            <span class="act oc">Internship</span>
+            <span class="act oc">Work From Home</span>
+            <span class="act cl">Remote</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ABOUT -->
+<div class="divider"></div>
 
-<section id="about" class="section bg-about">
-
-<h2>About</h2>
-
-<p class="abtme">I am a UI/UX and Product Designer specializing in
-   creating clean, modern, and user-centered designs. 
-   I am expert in Figma, where I create professional 
-   wireframes, high-fidelity UI designs, interactive 
-   prototypes, and design systems. I focus on solving 
-   user problems through intuitive interfaces, strong visual
-  hierarchy, typography, and thoughtful product design to deliver
-   meaningful user experiences. <br>
-<br>
-I also have basic frontend development knowledge, including HTML, CSS, and basic JavaScript. This helps me understand how designs work in real products and allows me to create practical, developer-friendly, and implementation-ready designs.</p>
-
+<!-- ══════════════ RESUME ══════════════ -->
+<section id="resume">
+  <div class="sh">
+    <div class="seye">Background</div>
+    <h2 class="stitle">My <em><span class="grad">Résumé</span></em></h2>
+  </div>
+  <div class="rgrid">
+    <div>
+      <div class="rct">Education</div>
+      <div class="tl">
+        <div class="tli">
+          <div class="tyr">2022 — 2026 (Expected)</div>
+          <div class="tttl">Bachelor of Technology (B.Tech)</div>
+          <div class="tpl">Vaagdevi College of Engineering, Warangal</div>
+          <div class="tb">Pursuing B.Tech while developing strong expertise in Product Design and UI/UX. Focused on user-centered design principles alongside engineering fundamentals.</div>
+        </div>
+      </div>
+      <div class="rct" style="margin-top:40px">Design Skills</div>
+      <div class="tl">
+        <div class="tli">
+          <div class="tttl">UI/UX Design</div>
+          <div class="tb">User Research · UX Design · UI Design · Wireframing · Prototyping · Usability Testing</div>
+        </div>
+        <div class="tli">
+          <div class="tttl">Strengths</div>
+          <div class="tb">User-focused mindset · Strong visual design sense · Quick learner · Attention to detail · Problem-solving ability</div>
+        </div>
+        <div class="tli">
+          <div class="tttl">Languages</div>
+          <div class="tb">English · Hindi · Telugu</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="rct">Projects</div>
+      <div class="tl">
+        <div class="tli">
+          <div class="tyr">Case Study</div>
+          <div class="tttl">CareCircle — Family Care Management App</div>
+          <div class="tpl">Mobile Application · Figma</div>
+          <div class="tb">Designed a family care management app to help users track medications, appointments, tasks, and health updates in one platform. Created user flows, wireframes, and high-fidelity UI screens with a focus on accessibility and simple navigation.</div>
+        </div>
+        <div class="tli">
+          <div class="tyr">Case Study</div>
+          <div class="tttl">BigBasket UI/UX Redesign</div>
+          <div class="tpl">Web &amp; Mobile · Figma</div>
+          <div class="tb">Redesigned the grocery shopping experience to improve product discovery and navigation clarity. Improved visual hierarchy, layout consistency, and category structure for faster product selection based on real user behavior.</div>
+        </div>
+      </div>
+      <div class="twrap">
+        <div class="ttit">Tools &amp; Skills</div>
+        <div class="tchips">
+          <div class="tch">Figma</div><div class="tch">FigJam</div>
+          <div class="tch">Adobe Photoshop</div><div class="tch">Prototyping</div>
+          <div class="tch">Wireframing</div><div class="tch">Basic HTML &amp; CSS</div>
+          <div class="tch">UX Research</div><div class="tch">Usability Testing</div>
+        </div>
+      </div>
+      <div class="twrap" style="margin-top:28px">
+        <div class="ttit">Portfolio Links</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="https://www.behance.net/mvkuiux" target="_blank" style="font-size:12px;color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.25);padding-bottom:4px;width:fit-content;">behance.net/mvkuiux ↗</a>
+          <a href="https://m-vinay-kumar-ui.github.io/" target="_blank" style="font-size:12px;color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.25);padding-bottom:4px;width:fit-content;">m-vinay-kumar-ui.github.io ↗</a>
+        </div>
+      </div>
+      <div class="rdl">
+        <a href="resumevinay.pdf" download class="mbtn pri"><span>Download Résumé ↓</span></a>
+        <a href="#contact" class="mbtn out"><span>Contact Me</span></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- RESUME -->
+<div class="divider"></div>
 
-<section id="resume" class="section bg-resume">
-<div class="center">
-<h2>Resume</h2>
-
-<img src="https://image2url.com/r2/default/images/1771179767668-0ef0d5a0-00fe-4b36-add5-aeec9e80b9c1.jpg" class="resume-img">
-
-<br>
-
-<a href="resume.jpg" download>
-<button class="btn">Download Resume</button>
-</a>
-</div>
-</section>
-
-<!-- CONTACT DETAILS (REPLACED CONTACT FORM) -->
-
-<section id="contact" class="section bg-contact">
-
-<h2>Contact</h2>
-
-<div class="contact-details">
-
-<p><strong>Name:</strong> m.vinay kumar</p>
-
-<p><strong>Email:</strong> m.vinay.k.ui@gmail.com</p>
-
-<p><strong>Phone:</strong> +91 9398114877</p>
-
-<p><strong>Location:</strong> hyderabad, India</p>
-
-<p><strong>LinkedIn:</strong>
-<a href="https://www.linkedin.com/in/vinay-kumar-madamshetty-6555b32a3" target="_blank">
-www.linkedin.com/in/vinay-kumar-madamshetty-6555b32a3
-</p>
-
-<p><strong>Behance:</strong>
-<a href="https://www.behance.net/mvkuiux" target="_blank">www.behance.net/mvkuiux</a>
-</p>
-
-</div>
-
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <div class="cgrid">
+    <div>
+      <div class="seye">Let's Connect</div>
+      <h2 class="cbig">Got an <span class="grad">opportunity</span> for me?</h2>
+      <p class="csub">I'm actively looking for full-time roles and internships in product or UX design. Let's have a conversation!</p>
+      <div>
+        <!-- ✅ FIX: email href matches display text -->
+        <a href="mailto:mvkuiux@gmail.com" class="clink">
+          <div><div class="cll">Email</div><div class="clv">mvkuiux@gmail.com</div></div>
+          <div class="clarr">↗</div>
+        </a>
+        <a href="https://www.linkedin.com/in/vinay-kumar-madamshetty-6555b32a3/" target="_blank" class="clink">
+          <div><div class="cll">LinkedIn</div><div class="clv">linkedin.com/in/vinay-kumar-madamshetty</div></div>
+          <div class="clarr">↗</div>
+        </a>
+        <!-- ✅ FIX: added https:// to Behance link -->
+        <a href="https://www.behance.net/mvkuiux" target="_blank" class="clink">
+          <div><div class="cll">Behance</div><div class="clv">behance.net/mvkuiux</div></div>
+          <div class="clarr">↗</div>
+        </a>
+        <a href="tel:+919398114877" class="clink">
+          <div><div class="cll">Mobile</div><div class="clv">+91 93981 14877</div></div>
+          <div class="clarr">↗</div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="fg"><label class="fl">Your Name</label><input type="text" class="fi" placeholder="Jane Smith"/></div>
+      <div class="fg"><label class="fl">Email Address</label><input type="email" class="fi" placeholder="jane@company.com"/></div>
+      <div class="fg"><label class="fl">Subject</label><input type="text" class="fi" placeholder="Job Opportunity / Internship / Freelance"/></div>
+      <div class="fg"><label class="fl">Message</label><textarea class="fta" placeholder="Tell me about the role or project..."></textarea></div>
+      <button class="fsub">Send Message →</button>
+    </div>
+  </div>
 </section>
 
 <footer>
-© 2026 vinay kumar | UI/UX Designer | Product Designer
+  <div class="flogo">Vinay.</div>
+  <div>© 2025 Madamshetty Vinay Kumar · Product Designer</div>
+  <a href="#home">Back to top ↑</a>
 </footer>
 
-<script src="portfolio.js"></script>
+<script>
+// ── CUSTOM CURSOR ──
+const cur  = document.getElementById('cur');
+const ring = document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx+'px'; cur.style.top = my+'px';
+});
+(function loop(){
+  rx += (mx-rx)*.1; ry += (my-ry)*.1;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,.cover-card,.achip,.tch').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
 
+// ── BACKGROUND CANVAS ──
+const cv = document.getElementById('bgc');
+const ct = cv.getContext('2d');
+let W, H;
+function rsz(){ W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+rsz(); window.addEventListener('resize', rsz);
+const COLORS = ['34,211,238','56,189,248','45,212,191','6,182,212'];
+class P {
+  constructor(){ this.reset(true); }
+  reset(init){
+    this.x  = Math.random()*W; this.y = Math.random()*H;
+    this.r  = Math.random()*1.4+.4;
+    this.vx = (Math.random()-.5)*.22; this.vy = (Math.random()-.5)*.22;
+    this.a  = init ? Math.random() : 0;
+    this.da = Math.random()*.009+.003;
+    this.c  = COLORS[Math.floor(Math.random()*COLORS.length)];
+  }
+  tick(){
+    this.x += this.vx; this.y += this.vy; this.a += this.da;
+    if(this.a>1 || this.x<0 || this.x>W || this.y<0 || this.y>H) this.reset(false);
+  }
+  draw(){
+    ct.beginPath();
+    ct.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ct.fillStyle = `rgba(${this.c},${Math.sin(this.a*Math.PI)*.55})`;
+    ct.fill();
+  }
+}
+const pts = Array.from({length:90}, () => new P());
+let lt = 0;
+function draw(){
+  ct.clearRect(0,0,W,H);
+  lt += .006;
+  for(let i=0;i<3;i++){
+    ct.beginPath();
+    for(let x=0;x<=W;x+=24){
+      const y = H*(.3+i*.18)+Math.sin(lt+x*.003+i*.8)*70+Math.cos(lt*.5+x*.005+i*.6)*35;
+      x===0 ? ct.moveTo(x,y) : ct.lineTo(x,y);
+    }
+    const wc = ['34,211,238','56,189,248','45,212,191'][i];
+    ct.strokeStyle = `rgba(${wc},.04)`;
+    ct.lineWidth = 1.5; ct.stroke();
+  }
+  pts.forEach(p => { p.tick(); p.draw(); });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── TYPEWRITER ──
+const phrases=['intuitive interfaces','user-centred designs','clean prototypes','accessible products','delightful experiences'];
+let pi=0,ci=0,del=false,tel=document.getElementById('typed');
+function type(){
+  const w=phrases[pi];
+  del ? (tel.textContent=w.slice(0,--ci)) : (tel.textContent=w.slice(0,++ci));
+  if(!del && ci===w.length){ setTimeout(()=>{del=true;type()},2200); return; }
+  if(del && ci===0){ del=false; pi=(pi+1)%phrases.length; }
+  setTimeout(type, del?46:85);
+}
+type();
+
+// ── SCROLL SPY ──
+const secs = document.querySelectorAll('section[id]');
+const nas  = document.querySelectorAll('.nlinks a');
+window.addEventListener('scroll', () => {
+  let cur2 = '';
+  secs.forEach(s => { if(window.scrollY >= s.offsetTop-120) cur2 = s.id; });
+  nas.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href')==='#'+cur2);
+  });
+},{passive:true});
+</script>
 </body>
 </html>
