@@ -115,8 +115,9 @@ section{position:relative;z-index:2;padding:120px 64px 100px;}
 .ssub{font-size:14px;color:var(--muted);line-height:1.8;max-width:480px;margin-top:12px;font-weight:300}
 #projects{background:var(--sand2)}
 
-/* ── GRID FIX: always 3 columns, cards stay inside ── */
+/* ── GRID: 3 columns, 4 on projects ── */
 .cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cover-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 
 .cover-card{background:var(--paper);border:1.5px solid var(--border);overflow:hidden;position:relative;cursor:none;display:flex;flex-direction:column;transition:border-color .4s,transform .35s,box-shadow .35s;}
 .cover-card:hover{border-color:rgba(34,211,238,.4);transform:translateY(-6px);box-shadow:0 20px 56px rgba(34,211,238,.08);}
@@ -126,18 +127,35 @@ section{position:relative;z-index:2;padding:120px 64px 100px;}
 .cc-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
 .cover-card:hover .cc-cover img{transform:scale(1.04)}
 .cc-bg{width:100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px}
+
+/* Project cover backgrounds */
 .cc-bg1{
   height:100%;width:100%;
   background-image:url("https://mir-s3-cdn-cf.behance.net/projects/max_808/54fb69245384057.Y3JvcCwxMjI4LDk2MCwwLDIxOTU.jpg");
   background-size:cover;background-position:center;
 }
-.cc-bg-bigbasket{
+.cc-bg-bigbasket-proj{
   background-image:url("https://image2url.com/r2/default/images/1773168261341-96281302-c589-44f2-9289-dcbaa8bcb0a0.png");
   background-size:cover;background-position:center;
+}
+/* Fashion app cover — rich gradient with accent blobs */
+.cc-bg-fashion{
+  background:linear-gradient(155deg,#0a0618 0%,#150d2e 45%,#0d0820 100%);
 }
 .cc-bg2{background:linear-gradient(155deg,#051820 0%,#082535 55%,#041015 100%)}
 .cc-bg3{background:linear-gradient(155deg,#071a20 0%,#0a2830 55%,#051218 100%)}
 .cc-bg4{background:linear-gradient(155deg,#051520 0%,#082030 55%,#041018 100%)}
+
+/* Case study cover backgrounds */
+.cc-bg-bigbasket{
+  background-image:url("https://image2url.com/r2/default/images/1773168261341-96281302-c589-44f2-9289-dcbaa8bcb0a0.png");
+  background-size:cover;background-position:center;
+}
+.cc-bg-carecircle{
+  background-image:url("https://mir-s3-cdn-cf.behance.net/projects/max_808/54fb69245384057.Y3JvcCwxMjI4LDk2MCwwLDIxOTU.jpg");
+  background-size:cover;background-position:center;
+}
+
 .cc-blob{position:absolute;border-radius:50%;filter:blur(52px);animation:fb 8s ease-in-out infinite}
 .ccb1{width:160px;height:160px;top:-20px;right:-20px}
 .ccb2{width:110px;height:110px;bottom:-10px;left:10px;animation-delay:-4s}
@@ -158,8 +176,22 @@ section{position:relative;z-index:2;padding:120px 64px 100px;}
 .cc-pill.cl{color:var(--clay)}
 .cc-pill.ms{color:var(--moss)}
 .cc-pill.oc{color:var(--ochre)}
+.cc-pill.emp{color:#c084fc}
 .cc-arrow{width:30px;height:30px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:background .3s,color .3s,border-color .3s;}
 .cover-card:hover .cc-arrow{background:var(--clay);color:var(--sand);border-color:var(--clay)}
+.cover-card a.cc-link-wrap{text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1}
+
+/* Empathy tag badge */
+.cc-emp-badge{
+  position:absolute;top:14px;left:14px;z-index:5;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 10px;
+  background:rgba(192,132,252,.15);
+  border:1px solid rgba(192,132,252,.45);
+  color:#c084fc;
+  backdrop-filter:blur(8px);
+}
+
 #case-studies{background:var(--sand)}
 #about{background:var(--sand2)}
 .agrid{display:grid;grid-template-columns:1fr 300px;gap:70px;align-items:start}
@@ -237,8 +269,11 @@ footer a:hover{color:var(--clay)}
   section{padding:100px 20px 60px}
   .home-wrap,.agrid,.cgrid,.rgrid{grid-template-columns:1fr}
   .profile-card{display:none}
-  .cover-grid{grid-template-columns:1fr}
+  .cover-grid,.cover-grid-4{grid-template-columns:1fr}
   footer{padding:20px}
+}
+@media(min-width:901px) and (max-width:1200px){
+  .cover-grid-4{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -286,7 +321,7 @@ footer a:hover{color:var(--clay)}
       </div>
       <div class="profile-info">
         <div class="profile-name">Madamshetty Vinay Kumar</div>
-        <div class="profile-role">Product Designer · Fresher</div>
+        <div class="profile-role">Product Designer · B.Tech CS Graduate</div>
         <div class="profile-badges">
           <span class="pbadge cl">Full-Time</span>
           <span class="pbadge ms">Part-Time</span>
@@ -308,192 +343,248 @@ footer a:hover{color:var(--clay)}
     <p class="ssub">UI/UX projects built during my design journey — from concept to polished prototype.</p>
   </div>
 
-  <!-- ✅ FIX: all 3 cards are inside .cover-grid -->
-  <div class="cover-grid">
-
-    <!-- Card 1 -->
+  <div class="cover-grid-4">
     <div class="cover-card">
-      <div class="cc-cover">
-        <div class="cc-bg cc-bg1">
-          <div class="cc-num-bg">01</div>
-          <div class="cc-dots"><span></span><span></span><span></span></div>
-          <div class="cc-label-row">
-            <span class="cc-cat">Mobile App</span>
-            <span class="cc-year-badge">2024</span>
+      <a href="https://www.behance.net/gallery/245384057/CareCircle-Family-Care-Management-Mobile-Application?platform=direct" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg cc-bg1">
+            <div class="cc-num-bg">01</div>
+            <div class="cc-dots"><span></span><span></span><span></span></div>
+            <div class="cc-label-row">
+              <span class="cc-cat">Mobile App</span>
+              <span class="cc-year-badge">2024</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cc-body">
-        <div class="cc-tag">UI/UX Design · Figma</div>
-        <div class="cc-title">CareCircle — Family Care Management App</div>
-        <div class="cc-desc">Designed a family care management app to help users track medications, appointments, tasks, and health updates in one platform.</div>
-        <div class="cc-foot">
-          <span class="cc-pill cl">Mobile UX</span>
-          <div class="cc-arrow">↗</div>
+        <div class="cc-body">
+          <div class="cc-tag">UI/UX Design · Figma</div>
+          <div class="cc-title">CareCircle — Family Care Management App</div>
+          <div class="cc-desc">Designed a family care management app to help users track medications, appointments, tasks, and health updates in one platform.</div>
+          <div class="cc-foot">
+            <span class="cc-pill cl">Mobile UX</span>
+            <div class="cc-arrow">↗</div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
-    <!-- Card 2 -->
+    <!-- Project 2 — BigBasket -->
     <div class="cover-card" style="transition-delay:.1s">
-      <div class="cc-cover">
-        <div class="cc-bg cc-bg2">
-          <div class="cc-blob ccb1" style="background:rgba(13,148,136,.35)"></div>
-          <div class="cc-blob ccb2" style="background:rgba(8,145,178,.22)"></div>
-          <div class="cc-num-bg">02</div>
-          <div class="cc-dots"><span></span><span></span><span></span></div>
-          <div class="cc-label-row">
-            <span class="cc-cat">Coming Soon</span>
-            <span class="cc-year-badge">2025</span>
+      <a href="https://www.behance.net/gallery/242673607/BigBasket-UIUX-Redesign-Case-Study?platform=direct" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg cc-bg-bigbasket-proj">
+            <div class="cc-num-bg">02</div>
+            <div class="cc-dots"><span></span><span></span><span></span></div>
+            <div class="cc-label-row">
+              <span class="cc-cat">E-Commerce · Web &amp; Mobile</span>
+              <span class="cc-year-badge">2024</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cc-body">
-        <div class="cc-tag">— · —</div>
-        <div class="cc-title" style="color:var(--muted);font-style:italic">Project Coming Soon</div>
-        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This project is currently in progress. Check back soon for updates.</div>
-        <div class="cc-foot">
-          <span class="cc-pill ms" style="opacity:.4">In Progress</span>
-          <div class="cc-arrow" style="opacity:.3">↗</div>
+        <div class="cc-body">
+          <div class="cc-tag">UI/UX Redesign · Figma · 6 User Interviews</div>
+          <div class="cc-title">BigBasket — Grocery Shopping Redesign</div>
+          <div class="cc-desc">Redesigned grocery discovery and checkout flow. Validated 28% faster product selection and 35% improvement in visual hierarchy via prototype testing with real users.</div>
+          <div class="cc-foot">
+            <span class="cc-pill ms">View on Behance</span>
+            <div class="cc-arrow">↗</div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
-    <!-- Card 3 -->
+    <!-- Project 3 — Fashion App (Empathy tag) -->
     <div class="cover-card" style="transition-delay:.2s">
-      <div class="cc-cover">
-        <div class="cc-bg cc-bg3">
-          <div class="cc-blob ccb1" style="background:rgba(6,182,212,.32)"></div>
-          <div class="cc-blob ccb2" style="background:rgba(13,148,136,.22)"></div>
-          <div class="cc-num-bg">03</div>
-          <div class="cc-dots"><span></span><span></span><span></span></div>
-          <div class="cc-label-row">
-            <span class="cc-cat">Coming Soon</span>
-            <span class="cc-year-badge">2025</span>
+      <a href="https://www.behance.net/gallery/248685249/Fashion-App-E-Commerce-Mobile-UIUX-Design?platform=direct" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg cc-bg-fashion">
+            <!-- Purple/violet blobs for fashion feel -->
+            <div class="cc-blob ccb1" style="background:rgba(192,132,252,.38)"></div>
+            <div class="cc-blob ccb2" style="background:rgba(236,72,153,.28)"></div>
+            <div class="cc-num-bg">03</div>
+            <div class="cc-dots"><span></span><span></span><span></span></div>
+            <!-- Empathy badge -->
+            <div class="cc-emp-badge">Empathy</div>
+            <div class="cc-label-row">
+              <span class="cc-cat">Fashion · Mobile App</span>
+              <span class="cc-year-badge">2025</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cc-body">
-        <div class="cc-tag">— · —</div>
-        <div class="cc-title" style="color:var(--muted);font-style:italic">Project Coming Soon</div>
-        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This project is currently in progress. Check back soon for updates.</div>
-        <div class="cc-foot">
-          <span class="cc-pill oc" style="opacity:.4">In Progress</span>
-          <div class="cc-arrow" style="opacity:.3">↗</div>
+        <div class="cc-body">
+          <div class="cc-tag">UI/UX Design · Figma · E-Commerce</div>
+          <div class="cc-title">Fashion App — E-Commerce Mobile UI/UX Design</div>
+          <div class="cc-desc">Designed a fashion e-commerce mobile app with a focus on empathy-driven shopping experience, visual storytelling, and intuitive product discovery.</div>
+          <div class="cc-foot">
+            <span class="cc-pill emp">Empathy-Led Design</span>
+            <div class="cc-arrow">↗</div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
-  </div><!-- ✅ end .cover-grid -->
+    <!-- Project 4 — VibeMatch -->
+    <div class="cover-card" style="transition-delay:.3s">
+      <a href="https://www.behance.net/mvkuiux" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg" style="background:linear-gradient(155deg,#060e18 0%,#0a1a28 50%,#041020 100%)">
+            <div class="cc-blob ccb1" style="background:rgba(34,211,238,.3)"></div>
+            <div class="cc-blob ccb2" style="background:rgba(56,189,248,.22)"></div>
+            <div class="cc-num-bg">04</div>
+            <div class="cc-dots"><span></span><span></span><span></span></div>
+            <div class="cc-label-row">
+              <span class="cc-cat">Social · Location-Based</span>
+              <span class="cc-year-badge">2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-tag">UI/UX Design · Figma · Safety-First UX</div>
+          <div class="cc-title">VibeMatch — Social Discovery App</div>
+          <div class="cc-desc">Location-based social app with real-time map UI and vibe tags ('Up for coffee', 'Into gaming'). 88% match satisfaction rate with 12 participants, safety-first privacy controls.</div>
+          <div class="cc-foot">
+            <span class="cc-pill oc">View on Behance</span>
+            <div class="cc-arrow">↗</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div><!-- end cover-grid-4 -->
 </section>
-
-<div class="divider"></div>
-
-<!-- ══════════════ CASE STUDIES ══════════════ -->
-<section id="case-studies">
   <div class="sh">
     <div class="seye">Deep Dives</div>
     <h2 class="stitle">Case <em><span class="grad">Studies</span></em></h2>
     <p class="ssub">Step-by-step breakdowns of my design thinking — from problem space through to final solution.</p>
   </div>
 
-  <!-- ✅ FIX: all 3 cards are inside .cover-grid -->
   <div class="cover-grid">
 
-    <!-- Card 1 -->
+    <!-- Case Study 1 — CareCircle -->
     <div class="cover-card">
-      <div class="cc-cover">
-        <div class="cc-bg cc-bg-bigbasket">
-          <div class="cc-blob ccb1" style="background:rgba(8,145,178,.38)"></div>
-          <div class="cc-blob ccb2" style="background:rgba(6,182,212,.22)"></div>
-          <div class="cc-num-bg">01</div>
-          <div class="cc-label-row">
-            <span class="cc-cat">E-commerce · Redesign</span>
-            <span class="cc-year-badge">Case Study</span>
+      <a href="https://www.behance.net/gallery/245384057/CareCircle-Family-Care-Management-Mobile-Application?platform=direct" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg cc-bg-carecircle">
+            <div class="cc-blob ccb1" style="background:rgba(34,211,238,.32)"></div>
+            <div class="cc-blob ccb2" style="background:rgba(45,212,191,.22)"></div>
+            <div class="cc-num-bg">01</div>
+            <div class="cc-label-row">
+              <span class="cc-cat">Mobile App · Family Care</span>
+              <span class="cc-year-badge">Case Study</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cc-body">
-        <div class="cc-tag">UX Research · UI Redesign · Figma</div>
-        <div class="cc-title">BigBasket UI/UX Redesign</div>
-        <div class="cc-desc">Redesigned the grocery shopping experience to improve product discovery and navigation clarity.</div>
-        <div class="cc-foot">
-          <span class="cc-pill ms">Improved Discovery</span>
-          <div class="cc-arrow">↗</div>
+        <div class="cc-body">
+          <div class="cc-tag">UX Research · UI Design · Figma</div>
+          <div class="cc-title">CareCircle — Family Care Management App</div>
+          <div class="cc-desc">End-to-end case study covering user research, wireframing, and high-fidelity design for a family care management app with medication tracking and health updates.</div>
+          <div class="cc-foot">
+            <span class="cc-pill cl">View on Behance</span>
+            <div class="cc-arrow">↗</div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
-    <!-- Card 2 -->
+    <!-- Case Study 2 — BigBasket -->
     <div class="cover-card" style="transition-delay:.1s">
-      <div class="cc-cover">
-        <div class="cc-bg cc-bg4">
-          <div class="cc-blob ccb1" style="background:rgba(13,148,136,.32)"></div>
-          <div class="cc-blob ccb2" style="background:rgba(6,182,212,.25)"></div>
-          <div class="cc-num-bg">02</div>
-          <div class="cc-label-row">
-            <span class="cc-cat">Coming Soon</span>
-            <span class="cc-year-badge">2025</span>
+      <a href="https://www.behance.net/gallery/242673607/BigBasket-UIUX-Redesign-Case-Study?platform=direct" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg cc-bg-bigbasket">
+            <div class="cc-blob ccb1" style="background:rgba(8,145,178,.38)"></div>
+            <div class="cc-blob ccb2" style="background:rgba(6,182,212,.22)"></div>
+            <div class="cc-num-bg">02</div>
+            <div class="cc-label-row">
+              <span class="cc-cat">E-Commerce · Redesign</span>
+              <span class="cc-year-badge">Case Study</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cc-body">
-        <div class="cc-tag">— · —</div>
-        <div class="cc-title" style="color:var(--muted);font-style:italic">Case Study Coming Soon</div>
-        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This case study is currently being documented. Check back soon for the full breakdown.</div>
-        <div class="cc-foot">
-          <span class="cc-pill oc" style="opacity:.4">In Progress</span>
-          <div class="cc-arrow" style="opacity:.3">↗</div>
+        <div class="cc-body">
+          <div class="cc-tag">UX Research · UI Redesign · Figma</div>
+          <div class="cc-title">BigBasket UI/UX Redesign</div>
+          <div class="cc-desc">Solved core usability pain points from 6 real user interviews. Validated 28% faster product selection and 35% improved visual hierarchy with annotated wireframes and a full component library.</div>
+          <div class="cc-foot">
+            <span class="cc-pill ms">View on Behance</span>
+            <div class="cc-arrow">↗</div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
-    <!-- Card 3 -->
+    <!-- Case Study 3 — Fashion App -->
     <div class="cover-card" style="transition-delay:.2s">
-      <div class="cc-cover">
-        <div class="cc-bg cc-bg3">
-          <div class="cc-blob ccb1" style="background:rgba(6,182,212,.32)"></div>
-          <div class="cc-blob ccb2" style="background:rgba(8,145,178,.22)"></div>
-          <div class="cc-num-bg">03</div>
-          <div class="cc-label-row">
-            <span class="cc-cat">Coming Soon</span>
-            <span class="cc-year-badge">2025</span>
+      <a href="https://www.behance.net/gallery/248685249/Fashion-App-E-Commerce-Mobile-UIUX-Design?platform=direct" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg cc-bg-fashion">
+            <div class="cc-blob ccb1" style="background:rgba(192,132,252,.38)"></div>
+            <div class="cc-blob ccb2" style="background:rgba(236,72,153,.28)"></div>
+            <div class="cc-num-bg">03</div>
+            <!-- Empathy badge on case study too -->
+            <div class="cc-emp-badge">Empathy</div>
+            <div class="cc-label-row">
+              <span class="cc-cat">Fashion · Mobile App</span>
+              <span class="cc-year-badge">Case Study</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cc-body">
-        <div class="cc-tag">— · —</div>
-        <div class="cc-title" style="color:var(--muted);font-style:italic">Case Study Coming Soon</div>
-        <div class="cc-desc" style="color:rgba(107,163,184,.35)">This case study is currently being documented. Check back soon for the full breakdown.</div>
-        <div class="cc-foot">
-          <span class="cc-pill cl" style="opacity:.4">In Progress</span>
-          <div class="cc-arrow" style="opacity:.3">↗</div>
+        <div class="cc-body">
+          <div class="cc-tag">UX Research · UI Design · E-Commerce</div>
+          <div class="cc-title">Fashion App — E-Commerce Mobile UI/UX</div>
+          <div class="cc-desc">A deep-dive into designing an empathy-first fashion shopping experience — from user research and affinity mapping to high-fidelity screens and prototype flows.</div>
+          <div class="cc-foot">
+            <span class="cc-pill emp">View on Behance</span>
+            <div class="cc-arrow">↗</div>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
-  </div><!-- ✅ end .cover-grid -->
+    <!-- Case Study 4 — VibeMatch -->
+    <div class="cover-card" style="transition-delay:.3s">
+      <a href="https://www.behance.net/mvkuiux" target="_blank" style="text-decoration:none;color:inherit;display:contents">
+        <div class="cc-cover">
+          <div class="cc-bg" style="background:linear-gradient(155deg,#060e18 0%,#0a1a28 50%,#041020 100%)">
+            <div class="cc-blob ccb1" style="background:rgba(34,211,238,.3)"></div>
+            <div class="cc-blob ccb2" style="background:rgba(56,189,248,.22)"></div>
+            <div class="cc-num-bg">04</div>
+            <div class="cc-label-row">
+              <span class="cc-cat">Social · Location-Based</span>
+              <span class="cc-year-badge">Case Study</span>
+            </div>
+          </div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-tag">Safety UX · Real-time Map UI · Figma</div>
+          <div class="cc-title">VibeMatch — Social Discovery App</div>
+          <div class="cc-desc">Deep-dive into safety-first social UX design — consent-first location sharing, block/report flows, and a vibe-tagging onboarding system achieving 88% match satisfaction with 12 participants.</div>
+          <div class="cc-foot">
+            <span class="cc-pill cl">View on Behance</span>
+            <div class="cc-arrow">↗</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
 </section>
-
-<div class="divider"></div>
-
-<!-- ══════════════ ABOUT ══════════════ -->
 <section id="about">
   <div class="agrid">
     <div>
       <div class="seye">About Me</div>
       <h2 class="stitle">Designing with <em><span class="grad">Curiosity</span></em></h2>
-      <div class="about-intro">Hi, I'm <em>Madamshetty Vinay Kumar</em> — a passionate product designer at the start of my journey.</div>
-      <p class="about-p">I recently completed my design education and I'm actively building my skills through self-initiated projects, design challenges, and continuous learning. I believe great design starts with empathy — deeply understanding people before picking up any tool.</p>
-      <p class="about-p">I'm looking for my first opportunity where I can contribute, learn fast, and grow alongside a team that cares about craft and impact.</p>
+      <div class="about-intro">Hi, I'm <em>Madamshetty Vinay Kumar</em> — a B.Tech (CS) graduate and Product Designer with a portfolio of 0→1 end-to-end case studies.</div>
+      <p class="about-p">I build products validated through usability testing with real users — with measurable outcomes: 40% task time reduction, 45% product engagement increase, and 88% user satisfaction. Advanced Figma skills, WCAG AA compliance expertise, and experience across mobile apps and e-commerce.</p>
+      <p class="about-p">Actively seeking full-time UI/UX or Product Design roles where I can contribute, learn fast, and grow alongside a team that cares about craft and impact.</p>
       <div class="about-section-title">Skills &amp; Tools</div>
       <div class="chip-wrap">
-        <span class="achip hi">Figma</span><span class="achip hi">UX Research</span>
-        <span class="achip hi">Wireframing</span><span class="achip hi">Prototyping</span>
-        <span class="achip">Design Systems</span><span class="achip">User Testing</span>
-        <span class="achip">Information Architecture</span><span class="achip">Adobe XD</span>
-        <span class="achip">HTML / CSS</span><span class="achip">Miro</span>
-        <span class="achip">Notion</span><span class="achip">Maze</span>
+        <span class="achip hi">Figma (Advanced)</span><span class="achip hi">FigJam</span>
+        <span class="achip hi">UX Research</span><span class="achip hi">Wireframing</span>
+        <span class="achip hi">Prototyping</span><span class="achip hi">Design Systems</span>
+        <span class="achip">WCAG Accessibility</span><span class="achip">Usability Testing</span>
+        <span class="achip">Interaction Design</span><span class="achip">Responsive Design</span>
+        <span class="achip">Visual Hierarchy</span><span class="achip">Adobe Photoshop</span>
+        <span class="achip">ProtoPie</span><span class="achip">HTML &amp; CSS</span>
       </div>
     </div>
     <div>
@@ -503,7 +594,7 @@ footer a:hover{color:var(--clay)}
         </div>
         <div class="acard-bottom">
           <div class="acard-name">Madamshetty Vinay Kumar</div>
-          <div class="acard-role">Product Designer · Fresher</div>
+          <div class="acard-role">Product Designer · B.Tech CS Graduate</div>
           <div class="acard-tag-wrap">
             <span class="act cl">Open to Work</span>
             <span class="act ms">Full-Time</span>
@@ -525,68 +616,155 @@ footer a:hover{color:var(--clay)}
   <div class="sh">
     <div class="seye">Background</div>
     <h2 class="stitle">My <em><span class="grad">Résumé</span></em></h2>
+    <p class="ssub">B.Tech (CS) graduate with measurable outcomes across mobile apps and e-commerce — validated through usability testing with real users.</p>
   </div>
+
+  <!-- Key metrics bar -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px;max-width:600px">
+    <div style="background:var(--paper);border:1.5px solid var(--border);padding:20px 22px;text-align:center">
+      <div style="font-family:var(--serif);font-size:36px;font-weight:800;color:var(--clay);line-height:1">40%</div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px">Task Time Reduction</div>
+    </div>
+    <div style="background:var(--paper);border:1.5px solid var(--border);padding:20px 22px;text-align:center">
+      <div style="font-family:var(--serif);font-size:36px;font-weight:800;color:var(--moss);line-height:1">45%</div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px">Product Engagement</div>
+    </div>
+    <div style="background:var(--paper);border:1.5px solid var(--border);padding:20px 22px;text-align:center">
+      <div style="font-family:var(--serif);font-size:36px;font-weight:800;color:var(--ochre);line-height:1">88%</div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px">User Satisfaction</div>
+    </div>
+  </div>
+
   <div class="rgrid">
+    <!-- LEFT COLUMN -->
     <div>
       <div class="rct">Education</div>
       <div class="tl">
         <div class="tli">
-          <div class="tyr">2022 — 2026 (Expected)</div>
-          <div class="tttl">Bachelor of Technology (B.Tech)</div>
+          <div class="tyr">Graduated: April 2026</div>
+          <div class="tttl">B.Tech — Computer Science</div>
           <div class="tpl">Vaagdevi College of Engineering, Warangal</div>
-          <div class="tb">Pursuing B.Tech while developing strong expertise in Product Design and UI/UX. Focused on user-centered design principles alongside engineering fundamentals.</div>
+          <div class="tb">Completed B.Tech while building a full product design portfolio with 4 end-to-end case studies validated through usability testing with real users.</div>
         </div>
       </div>
-      <div class="rct" style="margin-top:40px">Design Skills</div>
+
+      <div class="rct" style="margin-top:40px">Certifications</div>
       <div class="tl">
         <div class="tli">
-          <div class="tttl">UI/UX Design</div>
-          <div class="tb">User Research · UX Design · UI Design · Wireframing · Prototyping · Usability Testing</div>
+          <div class="tyr">Coursera · 2024</div>
+          <div class="tttl">Google UX Design Certificate</div>
+          <div class="tb">6 courses completed — research, wireframing, prototyping, accessibility, and UX for social good.</div>
         </div>
         <div class="tli">
-          <div class="tttl">Strengths</div>
-          <div class="tb">User-focused mindset · Strong visual design sense · Quick learner · Attention to detail · Problem-solving ability</div>
-        </div>
-        <div class="tli">
-          <div class="tttl">Languages</div>
-          <div class="tb">English · Hindi · Telugu</div>
+          <div class="tyr">Udemy · 2023</div>
+          <div class="tttl">Figma UI Bootcamp</div>
+          <div class="tb">Advanced Figma — components, auto-layout, variants, dev handoff, and design systems.</div>
         </div>
       </div>
-    </div>
-    <div>
-      <div class="rct">Projects</div>
-      <div class="tl">
-        <div class="tli">
-          <div class="tyr">Case Study</div>
-          <div class="tttl">CareCircle — Family Care Management App</div>
-          <div class="tpl">Mobile Application · Figma</div>
-          <div class="tb">Designed a family care management app to help users track medications, appointments, tasks, and health updates in one platform. Created user flows, wireframes, and high-fidelity UI screens with a focus on accessibility and simple navigation.</div>
-        </div>
-        <div class="tli">
-          <div class="tyr">Case Study</div>
-          <div class="tttl">BigBasket UI/UX Redesign</div>
-          <div class="tpl">Web &amp; Mobile · Figma</div>
-          <div class="tb">Redesigned the grocery shopping experience to improve product discovery and navigation clarity. Improved visual hierarchy, layout consistency, and category structure for faster product selection based on real user behavior.</div>
+
+      <div class="rct" style="margin-top:40px">Tools &amp; Skills</div>
+      <div class="twrap" style="margin-top:0">
+        <div class="ttit">Design Tools</div>
+        <div class="tchips">
+          <div class="tch">Figma (Advanced)</div><div class="tch">FigJam</div>
+          <div class="tch">Adobe Photoshop</div><div class="tch">ProtoPie</div>
+          <div class="tch">Figma Dev Mode</div><div class="tch">HTML &amp; CSS</div>
         </div>
       </div>
       <div class="twrap">
-        <div class="ttit">Tools &amp; Skills</div>
+        <div class="ttit">Design Skills</div>
         <div class="tchips">
-          <div class="tch">Figma</div><div class="tch">FigJam</div>
-          <div class="tch">Adobe Photoshop</div><div class="tch">Prototyping</div>
-          <div class="tch">Wireframing</div><div class="tch">Basic HTML &amp; CSS</div>
-          <div class="tch">UX Research</div><div class="tch">Usability Testing</div>
+          <div class="tch">UI / UX Design</div><div class="tch">User Research</div>
+          <div class="tch">Wireframing</div><div class="tch">Prototyping</div>
+          <div class="tch">Usability Testing</div><div class="tch">Design Systems</div>
+          <div class="tch">WCAG Accessibility</div><div class="tch">Responsive Design</div>
+          <div class="tch">Interaction Design</div><div class="tch">Visual Hierarchy</div>
         </div>
       </div>
+      <div class="twrap">
+        <div class="ttit">Languages</div>
+        <div class="tchips">
+          <div class="tch">English — Fluent</div>
+          <div class="tch">Telugu — Native</div>
+          <div class="tch">Hindi — Conversational</div>
+        </div>
+      </div>
+
+      <div class="rct" style="margin-top:40px">Achievements</div>
+      <div class="tl">
+        <div class="tli"><div class="tb">🏆 800+ Behance views in first 2 months</div></div>
+        <div class="tli"><div class="tb">📈 300+ LinkedIn connections</div></div>
+        <div class="tli"><div class="tb">🎯 30-Day UI Challenge — completed all 30 screens</div></div>
+        <div class="tli"><div class="tb">📚 6 Google UX courses + Figma Bootcamp completed alongside B.Tech</div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+      <div class="rct">Design Portfolio &amp; Case Studies</div>
+      <div class="tl">
+
+        <div class="tli">
+          <div class="tyr">0→1 UI/UX · Figma · <a href="https://www.behance.net/gallery/245384057/CareCircle-Family-Care-Management-Mobile-Application" target="_blank" style="color:var(--clay);text-decoration:none">View on Behance ↗</a></div>
+          <div class="tttl">CareCircle — Family Care Management App</div>
+          <div class="tpl">Mobile Application · User Research · WCAG AA</div>
+          <div class="tb">Led end-to-end design of a unified family care platform — medications, appointments, tasks, and health updates. Achieved <strong style="color:var(--ink)">40% reduction in task completion time</strong> validated through usability testing with 10 real users. Delivered 35+ WCAG AA compliant high-fidelity screens with full UX documentation.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--clay)">User Research</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--clay)">Usability Testing</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--clay)">WCAG AA</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--clay)">Figma</span>
+          </div>
+        </div>
+
+        <div class="tli">
+          <div class="tyr">UI/UX · Figma · <a href="https://www.behance.net/gallery/248685249/Fashion-App-E-Commerce-Mobile-UIUX-Design" target="_blank" style="color:var(--clay);text-decoration:none">View on Behance ↗</a></div>
+          <div class="tttl">ARV Fashion — Premium E-Commerce App</div>
+          <div class="tpl">Mobile App · Design Systems · Empathy-Led</div>
+          <div class="tb">Designed a premium fashion app from scratch — luxury editorial layouts, curated design system, and high-end brand identity. Achieved <strong style="color:var(--ink)">45% increase in product engagement</strong> from prototype testing. Built 50+ reusable Figma components across 40+ screens.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.22);color:#c084fc">Design Systems</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.22);color:#c084fc">Component Libraries</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.22);color:#c084fc">Empathy</span>
+          </div>
+        </div>
+
+        <div class="tli">
+          <div class="tyr">Figma · E-Commerce Redesign · <a href="https://www.behance.net/gallery/242673607/BigBasket-UIUX-Redesign-Case-Study" target="_blank" style="color:var(--clay);text-decoration:none">View on Behance ↗</a></div>
+          <div class="tttl">BigBasket — UI/UX Redesign</div>
+          <div class="tpl">Web &amp; Mobile · Responsive Design · 6 User Interviews</div>
+          <div class="tb">Redesigned grocery discovery and checkout flow — solving core usability pain points from 6 real user interviews. Validated <strong style="color:var(--ink)">28% faster product selection</strong> and <strong style="color:var(--ink)">35% improvement in visual hierarchy</strong>. Delivered annotated wireframes, responsive screens, and full Figma component library.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.22);color:var(--moss)">User Interviews</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.22);color:var(--moss)">Wireframing</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.22);color:var(--moss)">Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="tli">
+          <div class="tyr">UI/UX · Figma · Location-Based · <a href="https://www.behance.net/mvkuiux" target="_blank" style="color:var(--clay);text-decoration:none">View on Behance ↗</a></div>
+          <div class="tttl">VibeMatch — Social Discovery App</div>
+          <div class="tpl">Mobile App · Safety UX · Real-time Map UI</div>
+          <div class="tb">Designed a location-based social app with real-time map UI and vibe tags ('Up for coffee', 'Into gaming'). Achieved <strong style="color:var(--ink)">88% match satisfaction rate</strong> with 12 participants — standout feedback on onboarding and vibe-tagging. Built safety-first UX — block/report flows, consent-first location sharing, privacy controls.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.22);color:var(--ochre)">Safety UX</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.22);color:var(--ochre)">Onboarding Design</span>
+            <span style="font-size:10px;letter-spacing:.08em;padding:3px 8px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.22);color:var(--ochre)">Interaction Design</span>
+          </div>
+        </div>
+
+      </div>
+
       <div class="twrap" style="margin-top:28px">
         <div class="ttit">Portfolio Links</div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <a href="https://www.behance.net/mvkuiux" target="_blank" style="font-size:12px;color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.25);padding-bottom:4px;width:fit-content;">behance.net/mvkuiux ↗</a>
           <a href="https://m-vinay-kumar-ui.github.io/" target="_blank" style="font-size:12px;color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.25);padding-bottom:4px;width:fit-content;">m-vinay-kumar-ui.github.io ↗</a>
+          <a href="https://www.linkedin.com/in/vinay-kumar-madamshetty-6555b32a3" target="_blank" style="font-size:12px;color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.25);padding-bottom:4px;width:fit-content;">linkedin.com/in/vinay-kumar-madamshetty ↗</a>
         </div>
       </div>
       <div class="rdl">
-        <a href="resumevinay.pdf" download class="mbtn pri"><span>Download Résumé ↓</span></a>
+        <a href="VinayKumar_Resume_v5-1.docx" download class="mbtn pri"><span>Download Résumé ↓</span></a>
         <a href="#contact" class="mbtn out"><span>Contact Me</span></a>
       </div>
     </div>
@@ -603,18 +781,20 @@ footer a:hover{color:var(--clay)}
       <h2 class="cbig">Got an <span class="grad">opportunity</span> for me?</h2>
       <p class="csub">I'm actively looking for full-time roles and internships in product or UX design. Let's have a conversation!</p>
       <div>
-        <!-- ✅ FIX: email href matches display text -->
-        <a href="mailto:mvkuiux@gmail.com" class="clink">
-          <div><div class="cll">Email</div><div class="clv">mvkuiux@gmail.com</div></div>
+        <a href="mailto:m.vinay.k.ui@gmail.com" class="clink">
+          <div><div class="cll">Email</div><div class="clv">m.vinay.k.ui@gmail.com</div></div>
           <div class="clarr">↗</div>
         </a>
         <a href="https://www.linkedin.com/in/vinay-kumar-madamshetty-6555b32a3/" target="_blank" class="clink">
           <div><div class="cll">LinkedIn</div><div class="clv">linkedin.com/in/vinay-kumar-madamshetty</div></div>
           <div class="clarr">↗</div>
         </a>
-        <!-- ✅ FIX: added https:// to Behance link -->
         <a href="https://www.behance.net/mvkuiux" target="_blank" class="clink">
           <div><div class="cll">Behance</div><div class="clv">behance.net/mvkuiux</div></div>
+          <div class="clarr">↗</div>
+        </a>
+        <a href="https://m-vinay-kumar-ui.github.io/" target="_blank" class="clink">
+          <div><div class="cll">GitHub Portfolio</div><div class="clv">m-vinay-kumar-ui.github.io</div></div>
           <div class="clarr">↗</div>
         </a>
         <a href="tel:+919398114877" class="clink">
